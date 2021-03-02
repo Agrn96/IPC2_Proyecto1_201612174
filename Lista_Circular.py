@@ -1,13 +1,11 @@
 import Node
 
 class CLista:
-    def __init__(self):
+    def __init__(self, n, m):
         self.head = Node.Node(None, None, None)
         self.tail = Node.Node(None, None, None)
         self.head.next = self.tail
         self.tail.next = self.head
-
-    def set_Size(self,n,m):
         self.n = n
         self.m = m
     
@@ -18,12 +16,35 @@ class CLista:
             self.head = newNode
             self.tail = newNode
             newNode.next = self.head
-        else:     
-            #add to the end of the list
-            self.tail.next = newNode
-            self.tail = newNode
+        elif(((x==1) and (y==1)) and ((self.head.x != 1) and (self.head.y != 1))):
+            #add beginning node to the start
+            temp = self.head
+            self.head = newNode
+            self.head.next = temp
             self.tail.next = self.head
-            #sort after
+        else:
+            while(self.head != self.tail):
+                if(self.head.next.x == x and self.head.next.y == y):
+                    break
+
+                if(y==1):
+                    if(x-self.head.x != 1):
+                        self.head = self.head.next
+                    elif(self.head.y != self.m):
+                        self.head = self.head.next
+                    else:
+                        temp = self.head.next
+                        self.head.next = newNode
+                        newNode.next = temp
+                else:
+                    if(x != self.head.x):
+                        self.head = self.head.next
+                    if(y - self.head.y != 1):
+                        self.head = self.head.next
+                    else:
+                        temp = self.head.next
+                        self.head.next = newNode
+                        newNode.next = temp
 
     def out(self):
         #Outputs the data in the list

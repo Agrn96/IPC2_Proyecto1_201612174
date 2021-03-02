@@ -4,6 +4,7 @@ class Node:
         self.y = y
         self.data = data
         self.next = None
+        self.init = False
     
     def has_value(self, value):
         if self.data == value:
