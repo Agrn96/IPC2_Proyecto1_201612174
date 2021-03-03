@@ -7,26 +7,46 @@ class CLista:
         self.head.next = self.tail
         self.tail.next = self.head
     
-    def add(self, nombre, n_, m_, x, y, data):
+    def add(self, nombre, x, y, data):
         newNode = Node.Node(nombre,x,y,data)
         if self.head.data is None:
-            print("Activated0")
             #add to the beginning of the list
             self.head = newNode
-            self.head.next = self.head
-            newNode.next = self.head
-        elif(self.head.next == self.head):
-            print("Activatedx")
-            self.head.next = newNode
             self.tail = newNode
+            self.head.next = self.head
             newNode.next = self.head
         else:
             #add to the end of the list
             temp = self.head
-            while(temp.next != self.head):
-                temp = temp.next
-            temp.next = newNode
-            newNode.next = self.head
+            num = (int(temp.x)*10) + int(temp.y)
+            num_ = (int(x)*10)+int(y)
+            if(num_ < num):
+                newNode.next = self.head
+                self.head = newNode
+                self.tail.next = self.head
+            elif(self.head.next == self.tail):
+                if(num_ > ((int(self.tail.x)*10)+int(self.tail.y))):
+                    newNode.next = self.head
+                    self.tail.next = newNode
+                    self.tail = newNode
+                else:
+                    self.head.next = newNode
+                    newNode.next = self.tail
+            else:
+                #num = ((int(temp.next.x)) * 10) + int(temp.next.y)
+                while(int(num) < int(num_)):
+                    if(temp.next == self.head):
+                        temp.next = newNode
+                        newNode.next = self.head
+                        self.tail = newNode
+                        temp = temp.next
+                        break
+                    temp = temp.next
+                    num = (int(temp.next.x) * 10) + int(temp.next.y)
+                if(temp.next != self.head):
+                    newNode.next = temp.next
+                    temp.next = newNode
+                    
 
     def out(self):
         #Outputs the data in the list
@@ -34,12 +54,8 @@ class CLista:
             print("No Data")
         elif self.head.next is self.head:
             print(self.head.data + " " + self.head.x)
-            print(self.head.next.data + " " + self.head.next.x)
         else:
-            temp_head = self.head
-            print(temp_head.data,temp_head.x,temp_head.y)
-            temp_head = temp_head.next
-            while(temp_head != self.head):
-                print(temp_head.data,temp_head.x,temp_head.y)
-                # print(self.head.data)
-                temp_head = temp_head.next
+            while(self.head != self.tail):
+                print(self.head.data,self.head.x,self.head.y)
+                self.head = self.head.next
+            print(self.tail.data,self.tail.x,self.tail.y)
