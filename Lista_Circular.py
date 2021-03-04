@@ -3,8 +3,8 @@ from Node_dato import Node_dato
 
 class CLista:
     def __init__(self):
-        self.head = Node_dato(None, None, None, None)
-        self.tail = Node_dato(None, None, None, None)
+        self.head = Node_dato(None, None, None)
+        self.tail = Node_dato(None, None, None)
         self.head.next = self.tail
         self.tail.next = self.head
         self.next = None
@@ -15,8 +15,11 @@ class CLista:
         self.tail.next = newNode
         self.head = newNode
     
-    def add_dato(self, nombre, x, y, data):
-        newNode = Node_dato(nombre,x,y,data)
+    def add_dato(self, x_, y_, data_):
+        x = int(x_)
+        y = int(y_)
+        data = int(data_)
+        newNode = Node_dato(x,y,data)
         if self.head.data is None:
             #add to the beginning of the list
             self.head = newNode
@@ -65,8 +68,26 @@ class CLista:
             print("No Data")
         else:
             print(self.head.data, self.head.n, self.head.m)
+            temp = self.head.next
+            while(temp != self.head):
+                print(temp.data,temp.x,temp.y)
+                temp = temp.next
+
+    def pop(self,x_):
+        x = int(x_)
+        temp = self.head
+        while(self.head.next.x != x):
+            if(self.head == self.tail):
+                break
             self.head = self.head.next
-            while(self.head != self.tail):
-                print(self.head.data,self.head.x,self.head.y)
-                self.head = self.head.next
-            print(self.tail.data,self.tail.x,self.tail.y)
+            
+        
+        if(x == self.tail.x):
+            self.tail = self.head
+            self.tail.next = temp
+        else:
+            for i in range(int(temp.m)):
+                ran = self.head.next
+                #print(ran.x, ran.y)
+                self.head.next = ran.next
+        self.head = temp
