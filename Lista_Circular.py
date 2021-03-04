@@ -1,14 +1,22 @@
-import Node
+from Node_info import Node_info
+from Node_dato import Node_dato
 
 class CLista:
     def __init__(self):
-        self.head = Node.Node(None, None, None, None)
-        self.tail = Node.Node(None, None, None, None)
+        self.head = Node_dato(None, None, None, None)
+        self.tail = Node_dato(None, None, None, None)
         self.head.next = self.tail
         self.tail.next = self.head
+        self.next = None
+
+    def add_info(self, nombre, n, m):
+        newNode = Node_info(nombre, n, m)
+        newNode.next = self.head
+        self.tail.next = newNode
+        self.head = newNode
     
-    def add(self, nombre, x, y, data):
-        newNode = Node.Node(nombre,x,y,data)
+    def add_dato(self, nombre, x, y, data):
+        newNode = Node_dato(nombre,x,y,data)
         if self.head.data is None:
             #add to the beginning of the list
             self.head = newNode
@@ -18,14 +26,14 @@ class CLista:
         else:
             #add to the end of the list
             temp = self.head
-            num = (int(temp.x)*10) + int(temp.y)
-            num_ = (int(x)*10)+int(y)
-            if(num_ < num):
+            num = (int(temp.x)*100000) + (int(temp.y)*10)
+            num_ = (int(x)*100000)+(int(y)*10)
+            if(int(num_) < int(num)):
                 newNode.next = self.head
                 self.head = newNode
                 self.tail.next = self.head
             elif(self.head.next == self.tail):
-                if(num_ > ((int(self.tail.x)*10)+int(self.tail.y))):
+                if(num_ > ((int(self.tail.x)*100000)+(int(self.tail.y)*10))):
                     newNode.next = self.head
                     self.tail.next = newNode
                     self.tail = newNode
@@ -34,6 +42,7 @@ class CLista:
                     newNode.next = self.tail
             else:
                 #num = ((int(temp.next.x)) * 10) + int(temp.next.y)
+                
                 while(int(num) < int(num_)):
                     if(temp.next == self.head):
                         temp.next = newNode
@@ -42,8 +51,10 @@ class CLista:
                         temp = temp.next
                         break
                     temp = temp.next
-                    num = (int(temp.next.x) * 10) + int(temp.next.y)
+                    num = (int(temp.next.x) * 100000) + (int(temp.next.y)*10)
+                    
                 if(temp.next != self.head):
+                    #print(num, num_)
                     newNode.next = temp.next
                     temp.next = newNode
                     
@@ -52,9 +63,9 @@ class CLista:
         #Outputs the data in the list
         if self.head.data is None:
             print("No Data")
-        elif self.head.next is self.head:
-            print(self.head.data + " " + self.head.x)
         else:
+            print(self.head.data, self.head.n, self.head.m)
+            self.head = self.head.next
             while(self.head != self.tail):
                 print(self.head.data,self.head.x,self.head.y)
                 self.head = self.head.next

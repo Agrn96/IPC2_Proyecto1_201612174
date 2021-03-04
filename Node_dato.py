@@ -1,4 +1,4 @@
-class Node:
+class Node_dato:
     def __init__(self,nombre, x,y, data):
         #move to class to store information on list
         self.nombre = nombre
@@ -9,4 +9,3 @@ class Node:
         self.y = y
         self.data = data
         self.next = None
-        self.init = False
