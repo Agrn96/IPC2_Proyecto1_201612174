@@ -15,9 +15,12 @@ def procesar(lista_red):
 
 def reducir(lista):
     for i in range(1,int(lista.head.n)+1):
+        print("Comparando la fila: " + str(i) + " con las otras filas.")
         for j in range(i+1,int(lista.head.n)+1):
             if(compare(lista,i,j)):
+                print("Sumando Fila: " + str(i) + " == Fila: " + str(j))
                 add(lista,i,j)
+                lista.freq_update(i)
                 lista.pop(j)
 
 def add(lista, i, j):
@@ -28,13 +31,11 @@ def add(lista, i, j):
             return False
         temp = temp.next
     
-    
     while(temp_.x != j):
         if(temp_ == lista.tail):
             return False
         temp_ = temp_.next
     
-
     for i in range(int(lista.head.m)):
         temp.data += temp_.data
         temp = temp.next

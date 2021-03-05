@@ -11,7 +11,6 @@ def salida_Archivo(lista_):
     root = ET.Element("matrices")
     while(temp.next != None):
         matriz = ET.SubElement(root, "matriz", nombre = temp.head.data, n = temp.head.n, m = temp.head.m)
-        print(temp.head.data)
         i = 1
         j = 1
         m = int(temp.head.m)
@@ -23,6 +22,9 @@ def salida_Archivo(lista_):
                 j = 1
                 i += 1
             temp.head = temp.head.next
+        while(temp.freq != None):
+            ET.SubElement(matriz, "frecuencia", g = str(temp.freq.x)).text = str(temp.freq.data)
+            temp.freq = temp.freq.next
         temp = temp.next
 
     tree = ET.ElementTree(root)

@@ -17,6 +17,7 @@ def menu(x, lista, lista_red):
         return lista,lista_red
     elif(x == 3):
         salida_Archivo(temp_)
+        print("Se escribio el archivo satisfactorio")
         return lista,lista_red
     elif(x == 4): # Menu Opcion 4: Mostrar datos del estudiante
         print("\nAlberto Gabriel Reyes Ning\n201612174\nIPC2-A\nIngenieria en Ciencias y Sistemas\n4to Semestre")

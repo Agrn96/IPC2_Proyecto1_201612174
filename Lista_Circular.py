@@ -18,7 +18,7 @@ class CLista:
         
         self.freq = Node_dato(1,0,1)
         temp = self.freq
-        for i in range(2,int(n)):
+        for i in range(2,int(n)+1):
             temp_ = Node_dato(i,0,1)
             temp.next = temp_
             temp = temp.next
@@ -96,3 +96,11 @@ class CLista:
                 ran = self.head.next
                 self.head.next = ran.next
         self.head = temp
+    
+    def freq_update(self,x_):
+        x = int(x_)
+        temp = self.freq
+        while(temp.x != x):
+            temp = temp.next
+        temp.data += 1
+
