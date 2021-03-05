@@ -97,10 +97,11 @@ class CLista:
                 self.head.next = ran.next
         self.head = temp
     
-    def freq_update(self,x_):
+    def freq_update(self,x_, t_):
         x = int(x_)
+        t = int(t_)
         temp = self.freq
         while(temp.x != x):
             temp = temp.next
-        temp.data += 1
+        temp.data += t
 

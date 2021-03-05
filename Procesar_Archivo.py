@@ -3,15 +3,9 @@ from Lista_Circular import CLista
 def procesar(lista_red):
     temp_ = lista_red
     while(temp_.next != None):
+        print("\nREDUCIENDO: " + temp_.head.data + "\n")
         reducir(temp_)
         temp_ = temp_.next
-
-    #iterador para la lista de listas circulares, mostrar las matrices
-    temp = lista_red
-    while(temp.next != None):
-        print("PA")
-        temp.out()
-        temp = temp.next
 
 def reducir(lista):
     for i in range(1,int(lista.head.n)+1):
@@ -20,7 +14,8 @@ def reducir(lista):
             if(compare(lista,i,j)):
                 print("Sumando Fila: " + str(i) + " == Fila: " + str(j))
                 add(lista,i,j)
-                lista.freq_update(i)
+                lista.freq_update(i,1)
+                lista.freq_update(j,-1)
                 lista.pop(j)
 
 def add(lista, i, j):

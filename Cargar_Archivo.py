@@ -10,12 +10,16 @@ def cargar_Archivo(lista, lista_red):
     root = tree.getroot()
     temp = lista
     temp_ = lista_red
-
     #agregar informacion en Listas
     i=0
     for nombre in root:
-        for dato in root[i]:
+        if(compare_name(lista,nombre.attrib['nombre'])==True):
+                print("ERROR: Matriz: " + nombre.attrib['nombre'] + " ya existe")
+                i+=1
+                continue
+        for dato in root[i]:  
             if(int(dato.attrib['x']) > int(nombre.attrib['n']) or int(dato.attrib['y']) > int(nombre.attrib['m'])):
+                print("ERROR: Dato: "+ dato.text + "[" + dato.attrib['x'] + ", " + dato.attrib['y'] +"]esta fuera de rango" )
                 continue
             temp.add_dato(dato.attrib['x'],dato.attrib['y'],dato.text)
             temp_.add_dato(dato.attrib['x'],dato.attrib['y'],dato.text)
@@ -30,3 +34,15 @@ def cargar_Archivo(lista, lista_red):
         temp_ = temp_.next
         i+=1
     return ruta, lista, lista_red
+
+def compare_name(lista, nombre):
+    temp = lista
+    if(temp.head.data == None):
+        return False
+
+    while(temp.next != None):
+        if(temp.head.data == nombre):
+            return True
+        temp = temp.next
+    return False
+

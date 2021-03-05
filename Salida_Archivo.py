@@ -22,8 +22,10 @@ def salida_Archivo(lista_):
                 j = 1
                 i += 1
             temp.head = temp.head.next
+        matriz.set('n',str(i-1))
         while(temp.freq != None):
-            ET.SubElement(matriz, "frecuencia", g = str(temp.freq.x)).text = str(temp.freq.data)
+            if(temp.freq.data != 0):
+                ET.SubElement(matriz, "frecuencia", g = str(temp.freq.x)).text = str(temp.freq.data)
             temp.freq = temp.freq.next
         temp = temp.next
 
