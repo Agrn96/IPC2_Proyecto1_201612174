@@ -1,12 +1,11 @@
 from Lista_Circular import CLista
+import test
 import xml.etree.ElementTree as ET
-ruta = "D:\Documents\Projects\IPC2_Proyecto1_201612174\entrada1.xml"
+ruta = "D:\Documents\Projects\IPC2_Proyecto1_201612174\Ejemplo1.xml"
 
-def procesar():
+def procesar(lista,lista_red):
     tree = ET.parse(ruta)
     root = tree.getroot()
-    lista = CLista()
-    lista_red = CLista()
     temp = lista
     temp_ = lista_red
     i=0
@@ -37,10 +36,19 @@ def procesar():
         temp_ = temp_.next
 
     #iterador para la lista de listas circulares, mostrar las matrices
-    temp = lista_red
+    temp = lista
     while(temp.next != None):
+        #print(lista.freq.x, lista.freq.data)
         temp.out()
         temp = temp.next
+    
+    temp = lista
+    print("Choose List: ", end="")
+    l = int(input())
+    for i in range(1,l):
+        temp = temp.next
+    test.generate(temp)
+
 
 
 def reducir(lista):
@@ -101,4 +109,4 @@ def compare(lista, i, j):
         temp_ = temp_.next
     return True 
 
-procesar()
+#procesar()

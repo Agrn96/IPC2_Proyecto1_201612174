@@ -8,12 +8,21 @@ class CLista:
         self.head.next = self.tail
         self.tail.next = self.head
         self.next = None
+        self.freq = Node_dato(None,None,None)
 
     def add_info(self, nombre, n, m):
         newNode = Node_info(nombre, n, m)
         newNode.next = self.head
         self.tail.next = newNode
         self.head = newNode
+        
+        self.freq = Node_dato(1,0,1)
+        temp = self.freq
+        for i in range(2,int(n)):
+            temp_ = Node_dato(i,0,1)
+            temp.next = temp_
+            temp = temp.next
+
     
     def add_dato(self, x_, y_, data_):
         x = int(x_)

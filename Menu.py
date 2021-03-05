@@ -3,7 +3,9 @@ from Cargar_Archivo import cargar_Archivo
 from tkinter import *
 from tkinter import filedialog
 
-def menu(x):
+def menu(x, lista, lista_red):
+    temp = lista
+    temp_ = lista_red
     if(x == 1):  # Menu Opcion 1: Cargar Archivo
         ruta = cargar_Archivo()
         print("Opcion 1 terminado, ruta es: ", end=" ");
@@ -14,7 +16,7 @@ def menu(x):
         #f.close();
         #/Testing
     elif(x == 2):
-        procesar();
+        procesar(temp, temp_);
     elif(x == 3):
         print("Placeholder")
     elif(x == 4): # Menu Opcion 4: Mostrar datos del estudiante

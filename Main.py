@@ -1,5 +1,7 @@
-from Node import Node
 import Menu
+from Lista_Circular import CLista
+lista = CLista()
+lista_red = CLista()
 x = 0
 while(x != 6):
     """Mientras x != 6, el menu sigue apareciendo
@@ -19,5 +21,5 @@ while(x != 6):
     #f = open(ruta1, "r")
     #print(f.read())
     x = int(input())                #opcion del Menu
-    Menu.menu(x)                    #Llamada al Menu utilizando el input del usuario
+    Menu.menu(x,lista,lista_red)                    #Llamada al Menu utilizando el input del usuario
     
