@@ -53,8 +53,6 @@ class CLista:
                     self.head.next = newNode
                     newNode.next = self.tail
             else:
-                #num = ((int(temp.next.x)) * 10) + int(temp.next.y)
-                
                 while(int(num) < int(num_)):
                     if(temp.next == self.head):
                         temp.next = newNode
@@ -66,7 +64,6 @@ class CLista:
                     num = (int(temp.next.x) * 100000) + (int(temp.next.y)*10)
                     
                 if(temp.next != self.head):
-                    #print(num, num_)
                     newNode.next = temp.next
                     temp.next = newNode
                     
@@ -97,6 +94,5 @@ class CLista:
         else:
             for i in range(int(temp.m)):
                 ran = self.head.next
-                #print(ran.x, ran.y)
                 self.head.next = ran.next
         self.head = temp

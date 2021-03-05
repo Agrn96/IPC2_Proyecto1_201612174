@@ -4,7 +4,7 @@ os.environ["PATH"]  += os.pathsep + 'D:/Program Files (x86)/Graphviz/bin/'
 
 def generate(lista):
 
-    dot = Digraph(comment='Lista Circular, Matric: ' + lista.head.data)
+    dot = Digraph(comment='Lista Circular, Matriz: ' + str(lista.head.data))
     dot #doctestL +ELLIPSIS
 
     dot.node('A','Matrices')
@@ -14,16 +14,14 @@ def generate(lista):
     x = int(lista.head.n)
     y = int(lista.head.m)
     temp = lista.head.next
-    print(x,y)
-
     while(temp != lista.head):
         name = 'E' + str(int(temp.x)*100) + str(temp.y)
         dot.node(name,str(temp.data))
-        if(int(temp.y) == 1):
-            dot.edge('B','E' + str(int(temp.x)*100) + '1')
+        if(int(temp.x) == 1):
+            dot.edge('B','E' + str(int(temp.x)*100) + str(int(temp.y)))
         else:
-            dot.edge('E' + str(int(temp.x)*100) + str(int(temp.y)-1),'E' + str(int(temp.x)*100) + str(temp.y))
+            dot.edge('E' + str((int(temp.x)-1)*100) + str(int(temp.y)),'E' + str(int(temp.x)*100) + str(temp.y))
         temp = temp.next
-        
+
     dot.edges(['AB','BC','BD'])
-    dot.render('Salida.dot', view=True)
+    dot.render('Grafica.dot', view=True)

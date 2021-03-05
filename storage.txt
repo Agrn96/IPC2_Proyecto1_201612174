@@ -1,6 +1,0 @@
-#add to the end of the list
-            temp = self.head
-            while(temp.next != self.head):
-                temp = temp.next
-            temp.next = newNode
-            newNode.next = self.head

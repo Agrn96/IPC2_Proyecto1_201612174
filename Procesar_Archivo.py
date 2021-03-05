@@ -1,55 +1,17 @@
 from Lista_Circular import CLista
-import test
-import xml.etree.ElementTree as ET
-ruta = "D:\Documents\Projects\IPC2_Proyecto1_201612174\Ejemplo1.xml"
 
-def procesar(lista,lista_red):
-    tree = ET.parse(ruta)
-    root = tree.getroot()
-    temp = lista
-    temp_ = lista_red
-    i=0
-
-    #agregar informacion en Listas
-    for nombre in root:
-        #print(nombre.attrib['nombre'] + " " + nombre.attrib['n'] + " " + nombre.attrib['m'])
-        for dato in root[i]:
-            #print("NOMBRE: " + dato.attrib['x'] + " " + dato.attrib['y'] + " " + dato.text)
-            if(int(dato.attrib['x']) > int(nombre.attrib['n']) or int(dato.attrib['y']) > int(nombre.attrib['m'])):
-                continue
-            temp.add_dato(dato.attrib['x'],dato.attrib['y'],dato.text)
-            temp_.add_dato(dato.attrib['x'],dato.attrib['y'],dato.text)
-        
-        temp.add_info(nombre.attrib['nombre'], nombre.attrib['n'], nombre.attrib['m'])
-        temp_.add_info(nombre.attrib['nombre'], nombre.attrib['n'], nombre.attrib['m'])
-        newLista = CLista()
-        newLista_ = CLista()
-        temp.next = newLista
-        temp_.next = newLista_
-        temp = temp.next
-        temp_ = temp_.next
-        i+=1
-
+def procesar(lista_red):
     temp_ = lista_red
     while(temp_.next != None):
         reducir(temp_)
         temp_ = temp_.next
 
     #iterador para la lista de listas circulares, mostrar las matrices
-    temp = lista
+    temp = lista_red
     while(temp.next != None):
-        #print(lista.freq.x, lista.freq.data)
+        print("PA")
         temp.out()
         temp = temp.next
-    
-    temp = lista
-    print("Choose List: ", end="")
-    l = int(input())
-    for i in range(1,l):
-        temp = temp.next
-    test.generate(temp)
-
-
 
 def reducir(lista):
     for i in range(1,int(lista.head.n)+1):
@@ -61,24 +23,19 @@ def reducir(lista):
 def add(lista, i, j):
     temp = lista.head.next
     temp_ = lista.head.next
-    try:
-        while(temp.x != i):
-            if(temp == lista.tail):
-                return False
-            temp = temp.next
-    except:
-        print("",end="")
-
-    try:
-        while(temp_.x != j):
-            if(temp_ == lista.tail):
-                return False
-            temp_ = temp_.next
-    except:
-        print("",end="")
+    while(temp.x != i):
+        if(temp == lista.tail):
+            return False
+        temp = temp.next
+    
+    
+    while(temp_.x != j):
+        if(temp_ == lista.tail):
+            return False
+        temp_ = temp_.next
+    
 
     for i in range(int(lista.head.m)):
-        #print(temp.data, temp_.data)
         temp.data += temp_.data
         temp = temp.next
         temp_ = temp_.next
@@ -86,21 +43,18 @@ def add(lista, i, j):
 def compare(lista, i, j):
     temp = lista.head.next
     temp_ = lista.head.next
-    try:
-        while(temp.x != i):
-            if(temp == lista.tail):
-                return False
-            temp = temp.next
-    except:
-        print("",end="")
+    
+    while(temp.x != i):
+        if(temp == lista.tail):
+            return False
+        temp = temp.next
 
-    try:
-        while(temp_.x != j):
-            if(temp_ == lista.tail):
-                return False
-            temp_ = temp_.next
-    except:
-        print("",end="")
+    
+    while(temp_.x != j):
+        if(temp_ == lista.tail):
+            return False
+        temp_ = temp_.next
+    
     
     for i in range(int(lista.head.m)):
         if((temp.data == 0 and temp_.data != 0) or (temp_.data == 0 and temp.data != 0)):
@@ -108,5 +62,3 @@ def compare(lista, i, j):
         temp = temp.next
         temp_ = temp_.next
     return True 
-
-#procesar()
