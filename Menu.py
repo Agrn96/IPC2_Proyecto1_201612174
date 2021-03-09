@@ -16,8 +16,11 @@ def menu(x, lista, lista_red):
         procesar(temp_);
         return lista,lista_red
     elif(x == 3):
-        salida_Archivo(temp_)
-        print("Se escribio el archivo satisfactorio")
+        try:
+            salida_Archivo(temp_)
+            print("Se escribio el archivo satisfactorio")
+        except:
+            print("ERROR: error con la ruta")
         return lista,lista_red
     elif(x == 4): # Menu Opcion 4: Mostrar datos del estudiante
         print("\nAlberto Gabriel Reyes Ning\n201612174\nIPC2-A\nIngenieria en Ciencias y Sistemas\n4to Semestre")
@@ -31,8 +34,15 @@ def menu(x, lista, lista_red):
             print(ran.head.data)
             ran = ran.next
             i += 1
-        print("\nChoose List: ", end="")
-        l = int(input())
+        l = 0
+        while(l<1 or l>=i):
+            print("\nChoose List: ", end="")
+            try:
+                l = int(input())
+            except:
+                print("ERROR: Opcion no es un numero")
+            if(l<1 or l>=i):
+                print("ERROR: Opcion Invalido")
         # Iterar al grafica selecionado
         for i in range(1,l):
             temp = temp.next

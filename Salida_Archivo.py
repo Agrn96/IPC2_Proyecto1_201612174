@@ -29,5 +29,21 @@ def salida_Archivo(lista_):
             temp.freq = temp.freq.next
         temp = temp.next
 
+
+    prettify(root)
     tree = ET.ElementTree(root)
-    tree.write(ruta)
+    tree.write(ruta, encoding='UTF-8', xml_declaration=True)
+
+#https://stackoverflow.com/a/38573964 Codigo hecho por el Usuario Nacitar Sevaht, utilizado para que el archivo de xml sea ligible 
+def prettify(element, indent='  '):
+    queue = [(0, element)]  # (level, element)
+    while queue:
+        level, element = queue.pop(0)
+        children = [(level + 1, child) for child in list(element)]
+        if children:
+            element.text = '\n' + indent * (level+1)  # for child open
+        if queue:
+            element.tail = '\n' + indent * queue[0][0]  # for sibling open
+        else:
+            element.tail = '\n' + indent * (level-1)  # for parent close
+        queue[0:0] = children  # prepend so children come before siblings

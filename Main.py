@@ -1,3 +1,4 @@
+from tkinter.constants import E
 from Menu import menu
 from Lista_Circular import CLista
 lista = CLista()
@@ -19,7 +20,9 @@ def main(lista, lista_red):
         print("6. Salida")
         print("Choose Menu Option: ", end="\t")
 
-        x = int(input())                                #opcion del Menu
-        lista, lista_red = menu(x, lista, lista_red)    #Llamada al Menu utilizando el input del usuario
-
+        try:
+            x = int(input())                                #opcion del Menu
+            lista, lista_red = menu(x, lista, lista_red)    #Llamada al Menu utilizando el input del usuario
+        except:
+            print("ERROR: Opcion Invalido")
 main(lista, lista_red)
