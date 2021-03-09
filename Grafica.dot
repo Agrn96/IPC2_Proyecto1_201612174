@@ -1,0 +1,28 @@
+// Lista Circular, Matriz: Ejemplo2
+digraph {
+	A [label=Matrices]
+	B [label=Ejemplo2]
+	C [label=3]
+	D [label=3]
+	E1001 [label=5]
+	B -> E1001
+	E1002 [label=7]
+	B -> E1002
+	E1003 [label=0]
+	B -> E1003
+	E2001 [label=0]
+	E1001 -> E2001
+	E2002 [label=9]
+	E1002 -> E2002
+	E2003 [label=6]
+	E1003 -> E2003
+	E3001 [label=3]
+	E2001 -> E3001
+	E3002 [label=4]
+	E2002 -> E3002
+	E3003 [label=0]
+	E2003 -> E3003
+	A -> B
+	B -> C
+	B -> D
+}
